@@ -87,11 +87,15 @@ export async function createUserSession({
   });
 }
 
+
 export async function logout(request: Request) {
   const session = await getSession(request);
+  session.unset(USER_SESSION_KEY);
   return redirect("/", {
     headers: {
-      "Set-Cookie": await sessionStorage.destroySession(session),
+      "Set-Cookie": await sessionStorage.commitSession(session, {
+        expires: new Date(0),
+      }),
     },
   });
 }
