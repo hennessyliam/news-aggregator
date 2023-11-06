@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for news-aggregator-56ce on 2023-11-05T17:33:11-05:00
+# fly.toml app configuration file generated for financial-news-aggregator on 2023-11-05T17:56:48-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "news-aggregator-56ce"
+app = "financial-news-aggregator"
 primary_region = "mia"
 kill_signal = "SIGINT"
 kill_timeout = "5s"

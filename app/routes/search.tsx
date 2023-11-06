@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-import { Form, Link } from '@remix-run/react';
-import { requireUserId } from "~/session.server";
-import { useUser } from "~/utils";
+import { ActionFunctionArgs, LoaderFunctionArgs, json } from '@remix-run/node';
+import { Form, useActionData } from '@remix-run/react';
+import { fetchNews } from '../fetchNews.server';
 
-function SearchBox() {
-  const [searchResults, setSearchResults] = useState([]);
-  const user = useUser(); // Use the useUser hook to get the user object
+export async function action({ request }: ActionFunctionArgs) {
+  const params = await request.formData()
+  const searchTerm = params.get('searchTerm') || '';
+  console.log(`searchTerm: ${searchTerm}`);
+  const articles = (await fetchNews(searchTerm as string)).map((article) => ({
+    title: article.title,
+    url: article.url,
+    description: article.description,
+  }))
 
-  const handleSearch = () => {
-    // Generate 10 Lorem Ipsum blurbs
-    const loremIpsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
-    const results = Array(10).fill(loremIpsum);
-    setSearchResults(results);
-  }
+  return json({ articles });
+}
+
+
+const SearchBox = () => {
+  const data = useActionData<typeof action>()
 
   return (
     <div className="relative h-screen overflow-y-auto">
@@ -25,8 +31,8 @@ function SearchBox() {
       </div>
       <div>
         <h1 className="text-center text-md font-extrabold tracking-tight sm:text-md lg:text-md">
-          <span className="block italic text-grey-700 outline-gray-900-xl drop-shadow-xl">
-            Please enter a search term below, {user.email}
+          <span className="block uppercase text-grey-700 outline-gray-900-xl drop-shadow-xl">
+            Financial News Aggregator
           </span>
         </h1>
       </div>
@@ -38,24 +44,29 @@ function SearchBox() {
         </button>
       </Form>
       <div className="flex flex-col items-center justify-center">
-        <div className="mb-4">
-          <input
-            type="text"
-            className="px-4 py-2 border rounded"
-            placeholder="Search..."
-          />
-        </div>
-        <button
-          className="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-700"
-          onClick={handleSearch}
-        >
-          Search
-        </button>
-        <div className="mt-4">
-          {searchResults.map((result, index) => (
-            <div key={index} className="mb-2 px-4 py-2 border rounded">
-              {result}
-            </div>
+        <Form method="post">
+          <div className="mb-4">
+            <input
+              type="text"
+              name='searchTerm'
+              className="px-4 py-2 border rounded"
+              placeholder="Search..."
+            />
+          </div>
+          <button
+            className="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-700"
+          >
+            Search
+          </button>
+        </Form>
+        <div className="mt-4 flex flex-col gap-2">
+          {data?.articles.map(({ title, url, description }) => (
+            <a href={url} target='_blank' rel='noreferer' className="mb-2 px-4 py-2 border rounded flex flex-col justify-center max-w-xl ">
+              <span>{title}</span>
+              <span className='text-xs text-blue-500'>{url}</span>
+              <span className="text-gray-700 text-sm line-clamp-2">{description}</span>
+            </a>
+
           ))}
         </div>
       </div>
