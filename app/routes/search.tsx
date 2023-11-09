@@ -30,7 +30,7 @@ const SearchBox = () => {
         />
       </div>
       <div>
-        <h1 className="text-center text-md font-extrabold tracking-tight sm:text-md lg:text-md">
+        <h1 className="text-center text-xl font-extrabold tracking-tight sm:text-md lg:text-md">
           <span className="block uppercase text-grey-700 outline-gray-900-xl drop-shadow-xl">
             Financial News Aggregator
           </span>
@@ -54,7 +54,7 @@ const SearchBox = () => {
             />
           </div>
           <button
-            className="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-700"
+            className="px-4 py-2 flex items-center justify-center bg-indigo-500 text-white rounded hover:bg-indigo-700"
           >
             Search
           </button>

@@ -16,7 +16,7 @@ export async function fetchNews(term: string): Promise<Article[]> {
     try {
         const today = new Date(); // Get today's date
         const oneWeekAgo = new Date(); // Get another instance of today's date, which we'll then modify
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 2);
 
 
         // Convert both dates to YYYY-MM-DD format

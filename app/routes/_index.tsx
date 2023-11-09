@@ -35,13 +35,13 @@ export default function Index() {
                   <div className="flex space-x-4">
                     <Link
                       to="/search"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-indigo-500 shadow-sm hover:text-white hover:bg-green-500 sm:px-8"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-green-500 shadow-sm hover:text-white hover:bg-green-500 sm:px-8"
                     >
                       Search!
                     </Link>
                     <Form action="/logout" method="post">
                       <button
-                        className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-indigo-500 shadow-sm hover:text-white hover:bg-green-500 sm:px-8"
+                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-3 text-white font-medium shadow-sm hover:text-indigo-500 hover:bg-white sm:px-8"
                       >
                         Logout
                       </button>
