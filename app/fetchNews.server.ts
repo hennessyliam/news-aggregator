@@ -16,7 +16,7 @@ export async function fetchNews(term: string): Promise<Article[]> {
     try {
         const today = new Date(); // Get today's date
         const oneWeekAgo = new Date(); // Get another instance of today's date, which we'll then modify
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 2);
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
 
         // Convert both dates to YYYY-MM-DD format
@@ -32,7 +32,7 @@ export async function fetchNews(term: string): Promise<Article[]> {
             from: fromDate,
             to: toDate,
             language: 'en',
-            pageSize: 10, // The number of results to return. Max of 100
+            pageSize: 20, // The number of results to return. Max of 100
         });
 
         console.log('API response:', response);
@@ -42,7 +42,12 @@ export async function fetchNews(term: string): Promise<Article[]> {
             return [];
         }
 
-        return response.articles
+        // Sort the articles by the "publishedAt" parameter
+        const sortedArticles = response.articles.sort((a, b) => {
+            return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+        });
+
+        return sortedArticles;
     } catch (error: unknown) {
         if (error instanceof Error) {
             console.error(`Error fetching news: ${error.message}`);
@@ -51,4 +56,4 @@ export async function fetchNews(term: string): Promise<Article[]> {
         }
         return [];
     }
-};
+}
