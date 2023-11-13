@@ -2,6 +2,7 @@ import type {
   ActionFunctionArgs,
   LoaderFunctionArgs,
   MetaFunction,
+  LinksFunction,
 } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
@@ -10,6 +11,7 @@ import { useEffect, useRef } from "react";
 import { verifyLogin } from "~/models/user.server";
 import { createUserSession, getUserId } from "~/session.server";
 import { safeRedirect, validateEmail } from "~/utils";
+
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const userId = await getUserId(request);
@@ -84,10 +86,10 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-full flex-col justify-center">
-      <div className="relative">
+      <div className="relative mb-8">
         <img
-          className="justify-normal mx-auto h-1/3 w-1/3 object-cover"
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.m2nMNQxZJCZ-F6OI1NBzLQHaDF%26pid%3DApi&f=1&ipt=4944aa88cfe3f09e71cfbd961a8e1bfc56a2d9951f7ce7fb35619c16c5e74b1c&ipo=images"
+          className="mx-auto h-2/5 w-2/5 object-cover rounded-lg"
+          src="/images/image.jpg"
           alt="Financial News Aggregator"
         />
       </div>
