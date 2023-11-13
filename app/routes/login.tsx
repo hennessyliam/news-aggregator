@@ -79,8 +79,18 @@ export default function LoginPage() {
     }
   }, [actionData]);
 
+
+
+
   return (
     <div className="flex min-h-full flex-col justify-center">
+      <div className="relative">
+        <img
+          className="justify-normal mx-auto h-1/3 w-1/3 object-cover"
+          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.m2nMNQxZJCZ-F6OI1NBzLQHaDF%26pid%3DApi&f=1&ipt=4944aa88cfe3f09e71cfbd961a8e1bfc56a2d9951f7ce7fb35619c16c5e74b1c&ipo=images"
+          alt="Financial News Aggregator"
+        />
+      </div>
       <div className="mx-auto w-full max-w-md px-8">
         <Form method="post" className="space-y-6">
           <div>
@@ -161,7 +171,7 @@ export default function LoginPage() {
               </label>
             </div>
             <div className="text-center text-sm text-gray-500">
-              Don&apos;t have an account?{" "}
+              Don't have an account?{" "}
               <Link
                 className="text-blue-500 underline"
                 to={{

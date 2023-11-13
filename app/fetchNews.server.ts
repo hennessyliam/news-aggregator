@@ -33,6 +33,7 @@ export async function fetchNews(term: string): Promise<Article[]> {
             to: toDate,
             language: 'en',
             pageSize: 20, // The number of results to return. Max of 100
+            //category: 'business', // Specify the category as 'business'
         });
 
         console.log('API response:', response);
