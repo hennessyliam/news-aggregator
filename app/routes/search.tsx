@@ -53,11 +53,13 @@ const SearchBox = () => {
               placeholder="Search..."
             />
           </div>
-          <button
-            className="px-4 py-2 flex items-center justify-center bg-indigo-500 text-white rounded hover:bg-indigo-700"
-          >
-            Search
-          </button>
+          <div className="flex justify-center">
+            <button
+              className="px-4 py-2 flex items-center justify-center bg-indigo-500 text-white rounded hover:bg-indigo-700"
+            >
+              Search
+            </button>
+          </div>
         </Form>
         <div className="mt-4 flex flex-col gap-2">
           {data?.articles.map(({ title, url, description }) => (
